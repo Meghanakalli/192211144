@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Prime Numbers API</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .card {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      display: inline-block;
+      margin: 5px;
+      background-color: #f0f8ff;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Prime Numbers from API</h2>
+  <div id="prime-container"></div>
+
+  <script>
+    const getPrimesFromAPI = () => {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve([2, 3, 5, 7,11]);
+        }, 500);
+      });
+    };
+    const displayPrimes = async () => {
+      const primeContainer = document.getElementById('prime-container');
+      try {
+        const primes = await getPrimesFromAPI();
+        primes.forEach(prime => {
+          const div = document.createElement('div');
+          div.className = 'card';
+          div.textContent = prime;
+          primeContainer.appendChild(div);
+        });
+      } catch (error) {
+        primeContainer.innerHTML = `<p style="color:red;">Error loading primes: ${error}</p>`;
+      }
+    };
+    displayPrimes();
+  </script>
+
+</body>
+</html>
+
+output:Prime Numbers from API
+{2,3,5,7,11}
